@@ -22,6 +22,8 @@ public class LoginPage {
 	private By SearchBox = By.xpath(" //input[@placeholder='Search']");
 	private By CartBox = By.xpath("//button[@class='btn btn-inverse btn-block btn-lg dropdown-toggle']");
 	private By AccountLogoutLink = By.xpath("//h1[normalize-space()='Account Logout']");
+	
+	private By GitTest= By.xpath("Git testing ");
 
 	// 2. public page const....
 
