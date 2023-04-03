@@ -24,6 +24,8 @@ public class LoginPage {
 	private By AccountLogoutLink = By.xpath("//h1[normalize-space()='Account Logout']");
 	
 	private By GitTest= By.xpath("Git testing ");
+	
+	private By GitTesting = By.xpath("Git testing2nd");
 
 	// 2. public page const....
 
