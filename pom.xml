@@ -119,7 +119,7 @@
 					<reuseForks>true</reuseForks>
 					<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
 					<suiteXmlFiles>
-						<suiteXmlFile>src/main/resources/TestRunners/testng_regression (1).xml</suiteXmlFile>
+						<suiteXmlFile>src/test/resources/TestRunners/testng_regression.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<argLine>
 						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
