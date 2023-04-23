@@ -17,7 +17,7 @@ public class Constants {
 	public static final String USER_LOGOUT_MESSAGE = "Account Logout";
 	public static final String ACCOUNT_PAGE_FRACTION_URL = "route=account/account";
 	public static final int DEFAULT_ELEMENT_TIME_OUT = 15;
-	public static final int DEFAULT_TIME_OUT = 5;
+	public static final int DEFAULT_TIME_OUT = 15;
 	//public static final String  REGISTER_SUCCESS_MESSG = "Your Account Has Been Created!";
 	public static final String REGISTER_SHEET_NAME = "register";
 	public static final CharSequence REGISTER_SUCCESSFUL_MESSAGE ="Your Account Has Been Created!";
