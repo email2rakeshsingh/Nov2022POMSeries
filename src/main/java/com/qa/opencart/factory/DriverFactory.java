@@ -74,19 +74,17 @@ public class DriverFactory {
 			}
 
 		} else if (browsserName.equalsIgnoreCase("Edge")) {
-			
+
 			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
 				// remote execution:
 				init_remoteDriver("Edge");
 
-			}else {
+			} else {
 				// local execution
 				WebDriverManager.edgedriver().setup();
 				tlDriver.set(new EdgeDriver());
 
 			}
-			
-		
 
 		} else {
 			System.out.println("Please pass the right browser :" + browsserName);
@@ -217,6 +215,10 @@ public class DriverFactory {
 			e.printStackTrace();
 		}
 		return path;
+	}
+
+	public int getTestCount() {
+		return 100;
 	}
 
 }
