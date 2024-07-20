@@ -18,7 +18,7 @@ public class AccountPage {
 	private By header = By.xpath("(//img[@title='naveenopencart'])[1]");
 	private By accountLink = By.xpath("//a[@class='list-group-item'][normalize-space()='My Account']");
 	private By accountSectionHeader = By.cssSelector("div#content h2");
-	private By logOutLink = By.xpath("//a[@class='list-group-item'][normalize-space()='Logout']");
+	private By logOutLink = By.linkText("Logout");;
 	private By softwareLink = By.xpath("//a[normalize-space()='Software']");
 
 	/**

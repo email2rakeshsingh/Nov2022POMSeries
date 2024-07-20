@@ -3,7 +3,7 @@ pipeline
     agent any
     
     tools{
-    	maven'MAVEN_HOME'
+    	maven'maven'
         }
 
     stages 
@@ -12,17 +12,17 @@ pipeline
         {
             steps
             {
-               git'https://github.com/jglick/simple-maven-project-with-tests.git'sh "mvn -Dmaven.test.failure.ignore=true clean package"
+               git 'https://github.com/jglick/simple-maven-project-with-tests.git'sh"mvn-Dmaven.test.failure.ignore=true clean package"
             }
             post 
             {
                 success
                 {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
+                    junit '**/target/surefire-reports/TEST-*.xml'archiveArtifacts 'target/*.jar'
                 }
             }
         }
+        
         
         
         stage("Deploy to QA"){
@@ -30,13 +30,14 @@ pipeline
                 echo("deploy to qa")
             }
         }
+        
+        
                 
         stage('Regression Automation Test') {
             steps {
-            
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    git'https://github.com/email2rakeshsingh/Nov2022POMSeries.git'
-                    sh "mvn clean install"
+                    git 'https://github.com/naveenanimation20/Nov2022POMSeriesCode.git'
+                    sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml"
                     
                 }
             }
@@ -62,18 +63,44 @@ pipeline
             steps{
                      publishHTML([allowMissing: false,
                                   alwaysLinkToLastBuild: false, 
-                                  keepAll: false, 
-                                  reportDir: 'build', 
+                                  keepAll: true, 
+                                  reportDir: 'reports', 
                                   reportFiles: 'TestExecutionReport.html', 
-                                  reportName: 'HTML Extent Report', 
+                                  reportName: 'HTML Regression Extent Report', 
                                   reportTitles: ''])
             }
         }
         
-        stage("Deploy to PROD"){
+        stage("Deploy to Stage"){
             steps{
-                echo("deploy to PROD")
+                echo("deploy to Stage")
             }
         }
+        
+        stage('Sanity Automation Test') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    git 'https://github.com/naveenanimation20/Nov2022POMSeriesCode.git'
+                    sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml"
+                    
+                }
+            }
+        }
+        
+        
+        
+        stage('Publish sanity Extent Report'){
+            steps{
+                     publishHTML([allowMissing: false,
+                                  alwaysLinkToLastBuild: false, 
+                                  keepAll: true, 
+                                  reportDir: 'reports', 
+                                  reportFiles: 'TestExecutionReport.html', 
+                                  reportName: 'HTML Sanity Extent Report', 
+                                  reportTitles: ''])
+            }
+        }
+        
+        
     }
 }
